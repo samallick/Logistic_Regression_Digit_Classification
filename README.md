@@ -108,8 +108,6 @@ How do we specify the degree to which our predictions are right or wrong?
   - If the hypothesis (prediction) == 1 then the cost == 0. The prediction is in accordance with the label, so the margin of error is 0.
   - As the hypothesis (prediction) approaches 0, the cost approaches ∞.
 
-- 
-
 - If y == 0
 
   - ![](README_images/eq5.png)
