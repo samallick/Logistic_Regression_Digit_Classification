@@ -58,7 +58,7 @@ For work with coloured images, you may import using 3 channels (red, blue and gr
 
 **Sigmoid Function**
 
-![](/home/sam/machine_learning/digits/cpp/README_images/eq1.png)
+![](README_images/eq1.png)
 
 
 
