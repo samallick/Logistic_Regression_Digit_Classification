@@ -57,9 +57,10 @@ For work with coloured images, you may import using 3 channels (red, blue and gr
 #### Components
 
 **Sigmoid Function**
-$$
-g(z) = \frac{1}{1 + e^{-z}}
-$$
+
+![](/home/sam/machine_learning/digits/cpp/README_images/eq1.png)
+
+
 
 
 Where *e* is Euler's number. A graph of the sigmoid function looks something like this:
@@ -73,22 +74,16 @@ We will want to know, is image *a* more likely a match for digit *b* (1) or a no
 
 
 **Hypothesis Function**
-$$
-h(x, \theta) = \frac{1}{1 + e^{-x \theta^{T}}}
-$$
+
+![](README_images/eq2.png)
+
 To return a prediction in the range 0 to 1, use this hypothesis function where:
 
 - *x* is a row of *X* (all pixel values for one image)
-
 - *θ* is a row of matrix theta (parameters associated with a figurative digit 0-9, one parameter for each pixel in *x*)
-
 - *T* is the transpose operator used here on matrix *θ*
-
 - The dot product x * θ_transpose is equivalent to:
-
-  - $$
-    \sum_{i=0}^{length(x)-1} x_iθ_i
-    $$
+  - ![](README_images/eq3.png)
 
 This returns the probability, from 0 to 1, that image *x* is of the figurative digit represented by that row of *theta*. The returned probability will be accurate to the degree that the parameters *theta* have been trained correctly.
 
@@ -108,9 +103,7 @@ How do we specify the degree to which our predictions are right or wrong?
 
 - If y == 1
 
-  - $$
-    J(h(x,θ), y) = -ln(h(x, θ))
-    $$
+  - ![](README_images/eq4.png)
 
   - If the hypothesis (prediction) == 1 then the cost == 0. The prediction is in accordance with the label, so the margin of error is 0.
   - As the hypothesis (prediction) approaches 0, the cost approaches ∞.
@@ -119,9 +112,7 @@ How do we specify the degree to which our predictions are right or wrong?
 
 - If y == 0
 
-  - $$
-    J(h(x,θ), y) = -ln(1 - h(x,θ))
-    $$
+  - ![](README_images/eq5.png)
 
   - If the hypothesis (prediction) == 0 then the cost == 0. The prediction is in accordance with the label, so the margin of error is 0.
   - As the hypothesis (prediction) approaches 1, the cost approaches -∞.
@@ -131,9 +122,9 @@ The cost function uses a set of parameters to make a guess. It outputs 0 if the 
 For ease of use, we can rewrite the cost function on one line as follows:
 
 Where *m* = number of training examples,
-$$
-J(h(x,θ), y) = -y*ln(h(x,θ)) - (1-y) * ln(1 - h(x, θ))
-$$
+
+![](README_images/eq6.png)
+
 If y == 0, LHS goes to 0
 
 If y == 1, RHS goes to 0
@@ -141,9 +132,8 @@ If y == 1, RHS goes to 0
 So we get an equivalent equation on one line.
 
 In our implementation, we pass the cost function one row of *theta*, one column of *y*, and the entire *X* matrix. The **full cost function** can be written like so:
-$$
-J(θ) = \frac{1}{m} 	\sum_{i=0}^{m-1} [-y_i*ln(h(x_i,θ)) - (1-y_i)*ln(1 - h(x_i,θ))]
-$$
+
+![](README_images/eq7.png)
 
 **Gradient Descent**
 
@@ -154,22 +144,18 @@ We must minimize the cost *J(θ)*. Gradient descent is one way to do this.
 ![](README_images/gradient_graph.png)
 
 The partial derivative of the cost *J(θ)* with respect to some *θ\_j* describes the slope at a point on the cost curve depicted above. If *θ\_j* is too small the slope will be negative, if *θ\_j* is too big the slope will be positive. If we subtract this slope from *θ\_j*, we will move in the right direction. Subtracting a negative adds to *θ\_j,* subtracting a positive makes *θ\_j* smaller, both of which cause us to step towards the minimum.
-$$
-θ_j = θ_j - \frac{\partial}{\partial θ_j}J(θ)
-$$
+
+![](README_images/eq8.png)
+
 We're stepping in the right direction, but how do we dictate the magnitude of the step? As each step approaches the minimum, the partial derivative value becomes smaller, because the slope is less steep. We will naturally subtract smaller and smaller values from *θ\_j* with each iteration. However, this may not produce small enough steps. If we step too far, we may overshoot the minimum. You may find your cost bouncing between values on either side of the minimum, but never converging at 0 cost. It may even start walking back *up*. We multiply this partial derivative by a **learning rate** *alpha* which dictates the size of the steps. If you find that you're bouncing between positive and negative costs, your learning rate is probably too high, set it lower. If you find that your gradient_descent program is taking too long to converge, your learning rate may be too low, try setting it higher to take bigger steps.
 
+![](README_images/eq9.png)
 
-$$
-θ_j = θ_j - \alpha \frac{\partial}{\partial θ_j}J(θ)
-$$
 For gradient descent, repeat the above algorithm, *simultaneously* updating all  *θ\_j* on each iteration. We want to make sure we use the old value of *θ\_j* to calculate *J(θ)* when we find the new *θ\_(j+1)*. Update *θ\_j* to *θ\_n*, store them somewhere, then simultaneously update that entire *theta* row before before proceeding to the next gradient descent iteration.
 
 That partial derivative works out this way:
-$$
-\frac{\partial}{\partial θ_j}J(θ) = \frac{1}{m}\sum_{i=0}^{m-1}[(h(x_i,θ) - y_i)x_{ji}]
-$$
 
+![](README_images/eq10.png)
 
 **Overfitting and the Regularization Solution**
 
@@ -184,13 +170,13 @@ One solution may be to reduce the number of features. We may like to gather (5x5
 A second solution is called regularization. We can reduce the magnitude of our theta values to soften the impact they have on our model. By convention we use *λ* to represent our regularization term. When we add a large regularization value to the cost, gradient descent must find smaller values of theta in order to converge on the minimum. That's how, maybe unintuitively, adding gets us smaller parameters. Note that we don't regularize *θ\_0*.
 
 Where *j* == number of features, at the end of the cost function we add:
-$$
-+\frac{λ}{2m}\sum_{j=0}^{j-1}\theta_j^2
-$$
+
+![](README_images/eq11.png)
+
 This causes the partial derivative of the cost function to change. We have to update gradient descent because we now get that:
-$$
-\frac{\partial}{\partial θ_j}J(θ) = \frac{1}{m}\sum_{i=0}^{m-1}[(h(x_i,θ) - y_i)x_{ji}] + \frac{λ}{m}\theta_j
-$$
+
+![](README_images/eq12.png)
+
 **Multiple Class Classification**
 
 For classifying multiple classes (in this case digits 0-9) we just build multiple classifiers. This is why we have 10 columns of *y* and 10 rows of *theta*.
