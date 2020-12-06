@@ -1,0 +1,3 @@
+/home/sam/machine_learning/digits/cpp/learn/build/CMakeFiles/rebuild_cache.dir
+/home/sam/machine_learning/digits/cpp/learn/build/CMakeFiles/edit_cache.dir
+/home/sam/machine_learning/digits/cpp/learn/build/CMakeFiles/learn.dir
