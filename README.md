@@ -1,4 +1,4 @@
-# Logistic Regression - Recognising Hand-Drawn Digits
+# Logistic Regression - Recognizing Hand-Drawn Digits
 
 
 
