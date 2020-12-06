@@ -6,7 +6,7 @@
 
 Where the hand-drawn digits are in the centre and the program's guesses are in the top left corners.
 
-![](/home/sam/downloads/results.png)
+![](README_images/results.png)
 
 ## Installing Dependencies, Compiling, Running and Modifying the Program:
 
@@ -64,7 +64,7 @@ $$
 
 Where *e* is Euler's number. A graph of the sigmoid function looks something like this:
 
-![](/home/sam/downloads/graph.png)
+![](README_images/graph.png)
 
 
 
@@ -151,7 +151,7 @@ If the cost function determines that our prediction was wrong, how do we tune th
 
 We must minimize the cost *J(θ)*. Gradient descent is one way to do this.
 
-![](/home/sam/downloads/gradient_graph.png)
+![](README_images/gradient_graph.png)
 
 The partial derivative of the cost *J(θ)* with respect to some *θ\_j* describes the slope at a point on the cost curve depicted above. If *θ\_j* is too small the slope will be negative, if *θ\_j* is too big the slope will be positive. If we subtract this slope from *θ\_j*, we will move in the right direction. Subtracting a negative adds to *θ\_j,* subtracting a positive makes *θ\_j* smaller, both of which cause us to step towards the minimum.
 $$
@@ -173,7 +173,7 @@ $$
 
 **Overfitting and the Regularization Solution**
 
-![](/home/sam/downloads/overfitting.png)
+![](README_images/overfitting.png)
 
 Overfitting is when your model (in our case logistic regression) fits the training data too well. That being the case, it may fail to generalize with regards to new data it's designed to compute. Underfitting is when the model doesn't fit the training data well enough, and so it's not a good tool for making predictions on new inputs. We want our model to fit the data "just right".
 
