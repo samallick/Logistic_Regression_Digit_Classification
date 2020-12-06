@@ -26,9 +26,9 @@ However, I usually use CMake. A CMakeLists.txt file is included in each of the *
 
 ##### Running
 
-`./learn` iteratively computes better parameters as it learns to guess our training examples (from **digits/training_data**) correctly. This process is called training. When it's done, those parameters are output to the file **digits/learn/build/classifier.txt**
+`./learn` iteratively computes better parameters as it learns to guess our training examples (from **training_data**) correctly. This process is called training. When it's done, those parameters are output to the file **learn/build/classifier.txt**
 
-`./predict` imports the parameters from **classifier.txt** then predicts the values of the hand-drawn digits in **digits/test_data**
+`./predict` imports the parameters from **classifier.txt** then predicts the values of the hand-drawn digits in **test_data**
 
 The *learn* program has already been run and has produced a set of parameters. The *predict* program is ready to run.
 
