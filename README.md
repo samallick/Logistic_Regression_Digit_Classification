@@ -80,10 +80,18 @@ We will want to know, is image *a* more likely a match for digit *b* (1) or a no
 To return a prediction in the range 0 to 1, use this hypothesis function where:
 
 - *x* is a row of *X* (all pixel values for one image)
+
 - *θ* is a row of matrix theta (parameters associated with a figurative digit 0-9, one parameter for each pixel in *x*)
+
 - *T* is the transpose operator used here on matrix *θ*
+
 - The dot product x * θ_transpose is equivalent to:
-  - ![](README_images/eq3.png)
+
+  
+
+  ![](README_images/eq3.png)
+
+
 
 This returns the probability, from 0 to 1, that image *x* is of the figurative digit represented by that row of *theta*. The returned probability will be accurate to the degree that the parameters *theta* have been trained correctly.
 
